@@ -1,4 +1,5 @@
 <template>
+
   <ul>
     <berita-item
     v-for="article in articles"

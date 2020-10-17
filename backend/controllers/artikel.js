@@ -2,6 +2,7 @@ const { validationResult } = require("express-validator");
 const { create } = require("../model/artikel");
 const Artikel = require('../model/artikel');
 const Author = require('../model/author');
+const sequelize = require("../util/database");
 
 exports.getArtikel = async (req, res, next) => {
   try{
@@ -99,6 +100,26 @@ exports.updateArtikel = async (req , res ,next) => {
       err.statusCode = 404
       next(err)
     }
+  }catch(err){
+    next(err)
+  }
+}
+
+exports.searchArtikelByTitle = async(req , res , next)=> {
+  try{
+    const searchKey = req.query.searchkey
+    console.log(searchKey)
+    const result = await Artikel.findAll({
+      where : {
+        title : sequelize.where(sequelize.fn('LOWER', sequelize.col('title')),'LIKE' , '%' + searchKey.toLowerCase()  + '%')
+      }
+    })
+    res.status(200).json(
+      {
+        message : `Success get Search`, 
+        data : result
+      }
+    )
   }catch(err){
     next(err)
   }

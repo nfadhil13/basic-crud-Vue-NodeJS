@@ -3,6 +3,7 @@
     <base-card>
       <header>
         <h3>{{ title }}</h3>
+
           <base-button mode="flat" @click="onDelete(id)"> Delete </base-button>
       </header>
       <p>{{ content }}</p>
@@ -37,6 +38,11 @@ export default {
 </script>
 
 <style scoped>
+
+.author{
+  font-size: 1rem;
+}
+
 li {
   margin: auto;
   max-width: 40rem;

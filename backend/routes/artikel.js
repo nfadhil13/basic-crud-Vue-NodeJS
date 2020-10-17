@@ -10,6 +10,8 @@ router.get("/get/:id", artikelController.findArtikelByID);
 
 router.get("/list", artikelController.getArtikel);
 
+router.get("/search", artikelController.searchArtikelByTitle)
+
 router.post("/delete",[
 
  ],
