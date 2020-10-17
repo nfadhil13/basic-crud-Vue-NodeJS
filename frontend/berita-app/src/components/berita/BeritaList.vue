@@ -1,6 +1,8 @@
 <template>
-
-  <ul>
+  <base-card mode="center" v-if="articles.length<1">
+    <p>No Item in the list</p>
+  </base-card>
+  <ul v-else>
     <berita-item
     v-for="article in articles"
     :key="article.id"
